@@ -1,0 +1,397 @@
+state("PAL3A")
+{
+    uint go: "PAL3A.exe", 0x2EAB68; //開始用的隨便抓的
+    uint alevel: "PAL3A.exe", 0x80F160; //南宮煌等級
+    uint exp1: "PAL3A.exe", 0x80F1CC; //南宮煌經驗
+    uint exp2: "PAL3A.exe", 0x80F7C0; //溫慧經驗
+    uint exp3: "PAL3A.exe", 0x80FDB4; //王蓬絮經驗
+    uint exp4: "PAL3A.exe", 0x8103A8; //星璇經驗
+    uint exp5: "PAL3A.exe", 0x81099C; //雷元戈等級
+    uint money: "PAL3A.exe", 0x810CE4;
+    uint movie: "PAL3A.exe", 0x63E8A4;
+    float xaxis: "PAL3A.exe", 0x811134;
+    float yaxis: "PAL3A.exe", 0x81113C;
+    float zaxis: "PAL3A.exe", 0x8111D4;
+}
+startup
+{
+    settings.Add("BOSS");
+    settings.Add("SCENE");
+    settings.Add("SPECIAL");
+    settings.CurrentDefaultParent = "BOSS";
+        settings.Add("酒罈大妖");
+        settings.Add("波羅大王");
+        settings.Add("思堂");
+        settings.Add("茅山狸");
+        settings.Add("後風鳥");
+        settings.Add("土靈獸");
+        settings.Add("血魂姬");
+        settings.Add("屠肆");
+        settings.Add("魁妖");
+        settings.Add("士兵隊長");
+        settings.Add("感月");
+        settings.Add("殊明假身");
+        settings.Add("幽娘");
+        settings.Add("風靈獸");
+        settings.Add("飛蓬夕瑤");
+        settings.Add("蠍魃");
+        settings.Add("護法尊王");
+        settings.Add("燎火炙日獸");
+    settings.CurrentDefaultParent = "SCENE";
+        settings.Add("初上蜀山");
+        settings.Add("綠蘿嶂");
+        settings.Add("綠蘿山");
+        settings.Add("少陽三焦");
+        settings.Add("厥陰心包");
+        settings.Add("納林河源");
+        settings.Add("陽名百納");
+        settings.Add("太陰歸塵");
+        settings.Add("蜀山故道一層");
+        settings.Add("回蜀山");
+        settings.Add("鎖妖塔");
+        settings.Add("太陽華池");
+        settings.Add("魔界之門");
+        settings.Add("少陰凝碧");
+        settings.Add("月光城森林");
+        settings.Add("少陽參天");
+        settings.Add("厥陰蔽日");
+        settings.Add("盤古之心");
+        settings.Add("裡蜀山內城");
+    settings.CurrentDefaultParent = "SPECIAL";
+        settings.Add("秘密儲藏室");
+}
+init
+{
+    vars.finalmovie = false;
+    vars.detect = false;
+    vars.mountain = false;
+    vars.sum = false; 
+    vars.innerone = false; //厥陰心包判定
+    vars.innertwo = false; //太陰歸塵判定
+    vars.innerthree = false; //少陰凝碧判定
+    vars.innerfour = false; //厥陰蔽日判定
+    vars.green = false; //綠蘿嶂判定
+    vars.greenmountain = false; //綠蘿山判定
+    vars.river = false; //納林河源判定
+    vars.street = false; //蜀山故道一判定
+    vars.back = false; //回蜀山判定
+    vars.tower = false; //鎖妖塔判定
+    vars.door = false; //魔界之門判定
+    vars.moontown = false; //月光城判定
+    vars.heart = false; //盤古之心判定
+    vars.ura = false; //裡蜀山內城判定
+    vars.secret = false; //秘密儲藏室
+}
+start
+{
+    if (current.go != 0)
+    {
+        return true;
+    }
+}
+split
+{
+    //酒罈大妖
+    if (settings["酒罈大妖"] && current.money == old.money + 200 && current.xaxis < 777.8 && current.xaxis > 777.7 && current.yaxis < -1542 && current.yaxis > -1542.1 && current.zaxis < 2.01 && current.zaxis > 1.95)
+    {
+        return true;
+    }
+    //波羅大王
+    if (settings["波羅大王"] && current.money == old.money + 500 && current.xaxis < -17.4 && current.xaxis > -17.5 && current.yaxis < 37.5 && current.yaxis > 37.31 && current.zaxis < 2.05 && current.zaxis > 1.95)
+    {
+        return true;
+    }
+    //思堂
+    if (settings["思堂"] && current.money == old.money + 1000 && current.xaxis < 1730.1 && current.xaxis > 1729.9 && current.yaxis < 244.8 && current.yaxis > 244.5 && current.zaxis < 1.1 && current.zaxis > 0.95)
+    {
+        return true;
+    }
+    //茅山狸
+    if (settings["思堂"] && current.money == old.money + 1500 && current.xaxis < -1353.6 && current.xaxis > -1354 && current.yaxis < 399 && current.yaxis > 398.6 && current.zaxis < 6.7 && current.zaxis > 6.3)
+    {
+        return true;
+    }
+    //後風鳥
+    if (settings["後風鳥"] && current.money == old.money + 2000 && current.xaxis < -12.6 && current.xaxis > -13 && current.yaxis < -1271 && current.yaxis > -1271.3 && current.zaxis < 2.1 && current.zaxis > 1.95)
+    {
+        return true;
+    }
+    //土靈獸
+    if (settings["土靈獸"] && current.money == old.money + 3000 && current.xaxis < 144.7 && current.xaxis > 144.45 && current.yaxis < -384.6 && current.yaxis > -384.8 && current.zaxis < 2.1 && current.zaxis > 1.95)
+    {
+        return true;
+    }
+    //血魂姬
+    if (settings["血魂姬"] && current.money == old.money + 4000 && current.xaxis < -1418.4 && current.xaxis > -1418.6 && current.yaxis < -18.6 && current.yaxis > -18.8 && current.zaxis < 1032.6 && current.zaxis > 1032.4)
+    {
+        return true;
+    }
+    //屠肆
+    if (settings["屠肆"] && current.xaxis < 2221.8 && current.xaxis > 2221.5 && current.yaxis < 3584.4 && current.yaxis > 3584.1 && current.zaxis < 2.75 && current.zaxis > 2.5 &&
+        old.xaxis < 2149.8 && old.xaxis > 2149.5 && old.yaxis < 3560.4 && old.yaxis > 3560.1 && old.zaxis < 3.2 && old.zaxis > 3)
+    {
+        return true;
+    }
+    //魁妖
+    if (settings["魁妖"] && current.money == old.money + 4000 && current.xaxis < 1555.1 && current.xaxis > 1544.9 && current.yaxis < -20.1 && current.yaxis > -20.3 && current.zaxis < 2.1 && current.zaxis > 1.95)
+    {
+        return true;
+    }
+    //士兵隊長
+    if (settings["士兵隊長"] && current.money == old.money + 7000 && current.xaxis < 563 && current.xaxis > 562.8 && current.yaxis < 502.9 && current.yaxis > 502.7 && current.zaxis < 2.1 && current.zaxis > 1.95)
+    {
+        return true;
+    }
+    //感月
+    if (settings["感月"] && current.money == old.money + 6000 && current.xaxis < -31.9 && current.xaxis > -32.1 && current.yaxis < -111.35 && current.yaxis > -111.5 && current.zaxis < 19.2 && current.zaxis > 19.05)
+    {
+        return true;
+    }
+    //殊明假身
+    if (settings["殊明假身"] && current.money == old.money + 8000 && current.xaxis < -708.2 && current.xaxis > -708.4 && current.yaxis < -477.8 && current.yaxis > -477.9 && current.zaxis < 163 && current.zaxis > 162.8)
+    {
+        return true;
+    }
+    //幽娘
+    if (settings["幽娘"] && current.money == old.money + 7500 && current.xaxis < 43.6 && current.xaxis > 43.5 && current.yaxis < -70.75 && current.yaxis > -70.9 && current.zaxis < 30.2 && current.zaxis > 29.9)
+    {
+        return true;
+    }
+    //風靈獸
+    if (settings["風靈獸"] && current.exp1 + current.exp2 + current.exp3 + current.exp5 > old.exp1 + old.exp2 + old.exp3 + old.exp5 + 12000 && 
+        current.xaxis < -78.3 && current.xaxis > -78.4 && current.yaxis < -167.9 && current.yaxis > -168.1 && current.zaxis < 556.3 && current.zaxis > 556.15)
+    {
+        return true;
+    }
+    //飛蓬夕瑤 
+    if (settings["飛蓬夕瑤"] && current.money == old.money + 11000 && current.xaxis < -261.4 && current.xaxis > -261.5 && current.yaxis < -9.79 && current.yaxis > -9.9 && current.zaxis < 1.96 && current.zaxis > 1.93)
+    {
+        return true;
+    }
+    //蠍魃
+    if (settings["蠍魃"] && current.money == old.money + 8000 && current.xaxis < 1727.5 && current.xaxis > 1727.3 && current.yaxis < -1112.4 && current.yaxis > -1112.55 && current.zaxis < 9.1 && current.zaxis > 8.9)
+    {
+        return true;
+    }
+    //護法尊王
+    if (settings["護法尊王"] && current.money > old.money + 9990 && current.xaxis < 642.9 && current.xaxis > 642.7 && current.yaxis < 818.8 && current.yaxis > 818.6 && current.zaxis < 4.1 && current.zaxis > 3.9)
+    {
+        return true;
+    }
+    //燎火炙日獸
+    if (settings["燎火炙日獸"] && current.money == old.money + 15000 && current.xaxis > 62.15 && current.xaxis < 62.25 && current.yaxis > -1010.13 && current.yaxis < -1010.01 && current.zaxis > 122.075 && current.zaxis < 122.09)
+    {
+        vars.finalmovie = true ;
+        return true;
+    }
+    //結局
+    if (vars.finalmovie == true && current.movie != 0 && current.xaxis > 38.15 && current.xaxis < 38.3 && current.yaxis > -1090.87 && current.yaxis < -1072.40 && current.zaxis > 122.05 && current.zaxis < 122.075)
+    {
+        vars.finalmovie = false;
+        return true;
+    }
+    //分隔線
+    //陽地脈判定
+    if (current.xaxis < -148.9 && current.xaxis > -149.1 && current.yaxis < -524.8 && current.yaxis > -525.1 && current.zaxis < 2.1 && current.zaxis > 1.95) //地脈門戶大廳入口
+    {
+        vars.detect = true;
+    }
+        //少陽三焦
+        if (settings["少陽三焦"] && vars.detect == true && current.xaxis < 129.4 && current.xaxis > 129.2 && current.yaxis < 1463.55 && current.yaxis > 1463.3 && current.zaxis < 4.1 && current.zaxis > 3.9)
+        {
+            vars.detect = false;
+            return true;
+        }
+        //陽名百納
+        if (settings["陽名百納"] && vars.detect == true && current.xaxis < 966.9 && current.xaxis > 966.7 && current.yaxis < -2017.9 && current.yaxis > -2018.05 && current.zaxis < 2.1 && current.zaxis > 1.95)
+        {
+            vars.detect = false;
+            return true;
+        }
+        //太陽華池
+        if (settings["太陽華池"] && current.xaxis < -1463.7 && current.xaxis > -1463.82 && current.yaxis < -515 && current.yaxis > -515.2 && current.zaxis < 57.2 && current.zaxis > 57.04)
+        {
+            vars.sum = true;
+        }
+        if (vars.detect == true && current.xaxis < 147.45 && current.xaxis > 147.3 && current.yaxis < 1346.6 && current.yaxis > 1346.4 && current.zaxis < 1.85 && current.zaxis > 1.65)
+        {
+            if (vars.sum == false)
+            {
+                vars.detect = false;
+            }
+            else 
+            {
+                vars.sum = false;
+                vars.detect = false;
+                return true;
+            }
+        }
+        //少陽參天
+        if (settings["少陽參天"] && vars.detect == true && current.xaxis < -1822.87 && current.xaxis > -1823 && current.yaxis < 1335.82 && current.yaxis > 1335.7 && current.zaxis < 109.3 && current.zaxis > 109.15)
+        {
+            vars.detect = false;
+            return true;
+        }
+    //陰地脈
+        //厥陰心包
+        if (settings["厥陰心包"] && current.xaxis < -57.8 && current.xaxis > -57.9 && current.yaxis < 266.82 && current.yaxis > 266.7 && current.zaxis < 32.35 && current.zaxis > 32.2) //廢屋外 
+        {
+            vars.innerone = true;
+        }
+        if (vars.innerone == true && current.xaxis < -1669.9 && current.xaxis > -1670 && current.yaxis < 1449.7 && current.yaxis >1449.6 && current.zaxis < 2.1 && current.zaxis > 1.95)
+        {
+            vars.innerone = false;
+            return true;
+        }
+        //太陰歸塵
+        if (settings["太陰歸塵"] && current.xaxis < 1550.1 && current.xaxis > 1549.9 && current.yaxis < 436.73 && current.yaxis > 436.6 && current.zaxis < -7.45 && current.zaxis > -7.55) //思堂對話劇情
+        {
+            vars.innertwo = true;
+        }
+        if (vars.innertwo == true && current.xaxis < -1714.15 && current.xaxis > -1714.3 && current.yaxis < 1632.75 && current.yaxis > 1632.65 && current.zaxis < 2.1 && current.zaxis > 1.95)
+        {
+            vars.innertwo = false;
+            return true;
+        }
+        //少陰凝碧
+        if (settings["少陰凝碧"] && current.xaxis < 17.5 && current.xaxis > 17.4 && current.yaxis < 152.1 && current.yaxis > 152 && current.zaxis < 2.1 && current.zaxis > 1.95) //基地內間劇情
+        {
+            vars.innerthree = true;
+        }
+        if (vars.innerthree == true && current.xaxis < -1392.72 && current.xaxis > -1392.9 && current.yaxis < 15.8 && current.yaxis > 15.65 && current.zaxis < -44.16 && current.zaxis > -44.3)
+        {
+            vars.innerthree = false;
+            return true;
+        }
+        //厥陰蔽日 
+        if (settings["厥陰蔽日"] && current.xaxis < 507.9 && current.xaxis > 507.6 && current.yaxis < -1138.2 && current.yaxis > -1138.5 && current.zaxis < 66.4 && current.zaxis > 66.1) //燎日宅房間
+        {
+           vars.innerfour = true;
+        }
+        if (vars.innerfour == true && current.xaxis < 131.45 && current.xaxis > 131.3 && current.yaxis < -1760.4 && current.yaxis > -1760.55 && current.zaxis < 10.66 && current.zaxis > 10.5)
+        {
+            vars.innerfour = false;
+            return true;
+        }
+    //others 
+        //初上蜀山
+        if (settings["初上蜀山"] && current.xaxis < 19.15 && current.xaxis > 19 && current.yaxis < -510.7 && current.yaxis > -510.9 && current.zaxis < 2664.82 && current.zaxis > 2664.7) //最後繩子
+        {
+            vars.mountain = true;
+        }
+        if (vars.mountain == true && current.xaxis < 100 && current.xaxis > 50 && current.yaxis < 1500 && current.yaxis > 1400 && current.zaxis < -5 && current.zaxis > -10)
+        {
+            vars.mountain = false;
+            return true;
+        }
+        //綠蘿嶂
+        if (settings["綠蘿嶂"] && current.xaxis < 1152.25 && current.xaxis > 1152.2 && current.yaxis < -551 && current.yaxis > -551.11 && current.zaxis < -97.93 && current.zaxis > -98.02) //溫慧劇情對話
+        {
+            vars.green = true;
+        }
+        if (vars.green == true && current.xaxis < -1835.6 && current.xaxis > -1835.8 && current.yaxis < -2020.65 && current.yaxis > -2020.8 && current.zaxis < 8.25 && current.zaxis > 8.1)
+        {
+            vars.green = false;
+            return true;
+        }
+        //綠蘿山
+        if (settings["綠蘿山"] && current.xaxis < 1185.4 && current.xaxis > 1185.3 && current.yaxis < -1281.5 && current.yaxis > -1281.7 && current.zaxis < 208.25 && current.zaxis > 208.1) //最後藤蔓
+        {
+            vars.greenmountain = true;
+        }
+        if (vars.greenmountain == true && current.xaxis < -1167.8 && current.xaxis > -1167.95 && current.yaxis < -298.9 && current.yaxis > -299.1 && current.zaxis < -74.2 && current.zaxis > -74.4)
+        {
+            vars.greenmountain = false;
+            return true;
+        }
+        //納林河源
+        if (settings["納林河源"] && current.xaxis < 1721.45 && current.xaxis > 1721.3 && current.yaxis < 1643.6 && current.yaxis > 1643.5 && current.zaxis < 137.1 && current.zaxis > 136.9) //祭壇劇情
+        {
+            vars.river = true;
+        }
+        if (vars.river == true && current.xaxis < 1007.2 && current.xaxis > 1006.9 && current.yaxis < 1845.6 && current.yaxis > 1845.35 && current.zaxis < 76.9 && current.zaxis > 76.8)
+        {
+            vars.river = false;
+            return true;
+        }
+        //蜀山故道一層
+        if (settings["蜀山故道一層"] && current.xaxis < 1735.1 && current.xaxis > 1734.9 && current.yaxis < -8.1 && current.yaxis > -8.25 && current.zaxis < 2.1 && current.zaxis > 1.95) //魁妖劇情對話
+        {
+            vars.street = true;
+        }
+        if (vars.street == true && current.xaxis < -1.5 && current.xaxis > -1.65 && current.yaxis < 1450.4 && current.yaxis > 1450.15 && current.zaxis < -5.8 && current.zaxis > -6.04)
+        {
+            vars.street = false;
+            return true;
+        }
+        //回蜀山
+        if (settings["回蜀山"] && current.zaxis < 3567.5 && current.zaxis > 3567.1) //最後浮板
+        {
+            vars.back = true;
+        }
+        if (vars.back == true && current.xaxis < 3559.7 && current.xaxis > 3559.55 && current.yaxis < 222.75 && current.yaxis > 222.6 && current.zaxis < -11.7 && current.zaxis > -11.8)
+        {
+            vars.back = false;
+            return true;
+        }
+        //鎖妖塔
+        if (settings["鎖妖塔"] && current.xaxis < -4.5 && current.xaxis > -4.63 && current.yaxis < 6.4 && current.yaxis > 6.3 && current.zaxis < 26.02 && current.zaxis > 25.95) //無極閣內間
+        {
+            vars.tower = true;
+        }
+        if (vars.tower == true && current.xaxis < 127.46 && current.xaxis > 127.37 && current.yaxis < 22.8 && current.yaxis > 22.7 && current.zaxis < 14.2 && current.zaxis > 14.02)
+        {
+            vars.tower = false;
+            return true;
+        }
+        //魔界之門
+        if (settings["魔界之門"] && current.xaxis < -117.8 && current.xaxis > -117.9 && current.yaxis < 1586.8 && current.yaxis > 1586.7 && current.zaxis < 33.4 && current.zaxis > 33.26) //傳送點前劇情
+        {
+            vars.door = true;
+        }
+        if (vars.door == true && current.xaxis < 784.45 && current.xaxis > 784.25 && current.yaxis < 795.1 && current.yaxis > 794.9 && current.zaxis < 1802.55 && current.zaxis > 1802.4)
+        {
+            vars.door = false;
+            return true;
+        }
+        //月光城森林
+        if (settings["月光城森林"] && current.xaxis < -2201.45 && current.xaxis > -2201.6 && current.yaxis < -1504.5 && current.yaxis > -1504.65 && current.zaxis < 4.6 && current.zaxis > 4.45) //入口前對話
+        {
+            vars.moontown = true;
+        }
+        if (vars.moontown == true && current.xaxis < 1855.9 && current.xaxis > 1855.8 && current.yaxis < -130.8 && current.yaxis > -130.95 && current.zaxis < 95.62 && current.zaxis > 95.5)
+        {
+            vars.moontown = false;
+            return true;
+        }
+        //盤古之心
+        if (settings["盤古之心"] && current.xaxis < -844.9 && current.xaxis > -845.1 && current.yaxis < -536.85 && current.yaxis > -537 && current.zaxis < 2.1 && current.zaxis > 1.95) //厥陰蔽日出來的劇情點
+        {
+            vars.heart = true;
+        }
+        if (vars.heart == true && current.xaxis < -499.3 && current.xaxis > -499.55 && current.yaxis < 1943.3 && current.yaxis > 1943.1 && current.zaxis < 210.55 && current.zaxis > 210.35)
+        {
+            vars.heart = false;
+            return true;
+        }
+        //裡蜀山內城
+        if (settings["裡蜀山內城"] && current.xaxis < 2047.7 && current.xaxis > 2047.57 && current.yaxis < 558.74 && current.yaxis > 558.62 && current.zaxis < 3.73 && current.zaxis > 3.62) //千凝魔艮
+        {
+            vars.ura = true;
+        }
+        if (vars.ura == true && current.xaxis < -1016.2 && current.xaxis > -1016.3 && current.yaxis < -970.3 && current.yaxis > -970.4 && current.zaxis < 8.8 && current.zaxis > 8.7)
+        {
+            vars.ura = false;
+            return true;
+        }
+        //秘密儲藏室
+        if (settings["秘密儲藏室"] && current.xaxis < -89.4 && current.xaxis > -89.6 && current.yaxis < -109.8 && current.yaxis > -109.96 && current.zaxis < 2.1 && current.zaxis > 1.95) //機關
+        {
+            vars.secret = true;
+        }
+        if (vars.secret == true && current.xaxis < -1133.75 && current.xaxis > -1133.95 && current.yaxis < 1375.86 && current.yaxis > 1375.66 && current.zaxis < 1.66 && current.zaxis > 1.45)
+        {
+            vars.secret = false;
+            return true;
+        }
+}
