@@ -6,7 +6,7 @@ state("PAL3A")
     uint exp2: "PAL3A.exe", 0x80F7C0; //溫慧經驗
     uint exp3: "PAL3A.exe", 0x80FDB4; //王蓬絮經驗
     uint exp4: "PAL3A.exe", 0x8103A8; //星璇經驗
-    uint exp5: "PAL3A.exe", 0x81099C; //雷元戈等級
+    uint exp5: "PAL3A.exe", 0x81099C; //雷元戈經驗
     uint money: "PAL3A.exe", 0x810CE4;
     uint movie: "PAL3A.exe", 0x63E8A4;
     float xaxis: "PAL3A.exe", 0x811134;
