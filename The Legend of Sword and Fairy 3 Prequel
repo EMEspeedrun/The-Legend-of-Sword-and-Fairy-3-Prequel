@@ -65,12 +65,12 @@ init
     vars.finalmovie = false;
     vars.detect = false;
     vars.mountain = false;
-    vars.sum = false; 
+    vars.sun = false; 
     vars.innerone = false; //厥陰心包判定
     vars.innertwo = false; //太陰歸塵判定
     vars.innerthree = false; //少陰凝碧判定
     vars.innerfour = false; //厥陰蔽日判定
-    vars.green = false; //綠蘿嶂判定
+    vars.green = 0; //綠蘿嶂判定
     vars.greenmountain = false; //綠蘿山判定
     vars.river = false; //納林河源判定
     vars.street = false; //蜀山故道一判定
@@ -211,17 +211,17 @@ split
         //太陽華池
         if (settings["太陽華池"] && current.xaxis < -1463.7 && current.xaxis > -1463.82 && current.yaxis < -515 && current.yaxis > -515.2 && current.zaxis < 57.2 && current.zaxis > 57.04)
         {
-            vars.sum = true;
+            vars.sun = true;
         }
         if (vars.detect == true && current.xaxis < 147.45 && current.xaxis > 147.3 && current.yaxis < 1346.6 && current.yaxis > 1346.4 && current.zaxis < 1.85 && current.zaxis > 1.65)
         {
-            if (vars.sum == false)
+            if (vars.sun == false)
             {
                 vars.detect = false;
             }
             else 
             {
-                vars.sum = false;
+                vars.sun = false;
                 vars.detect = false;
                 return true;
             }
@@ -285,13 +285,9 @@ split
             return true;
         }
         //綠蘿嶂
-        if (settings["綠蘿嶂"] && current.xaxis < 1152.25 && current.xaxis > 1152.2 && current.yaxis < -551 && current.yaxis > -551.11 && current.zaxis < -97.93 && current.zaxis > -98.02) //溫慧劇情對話
+        if (current.exp3 == 240 && vars.green == 0 && current.xaxis < -1835.6 && current.xaxis > -1835.8 && current.yaxis < -2020.65 && current.yaxis > -2020.8 && current.zaxis < 8.25 && current.zaxis > 8.1)
         {
-            vars.green = true;
-        }
-        if (vars.green == true && current.xaxis < -1835.6 && current.xaxis > -1835.8 && current.yaxis < -2020.65 && current.yaxis > -2020.8 && current.zaxis < 8.25 && current.zaxis > 8.1)
-        {
-            vars.green = false;
+            vars.green++;
             return true;
         }
         //綠蘿山
